@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Resultados</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <b>Resultados #1</b>
+      <span item-right> {{ results.result1 }} Votos</span>
+    </ion-item>
+    <ion-item>
+      <b>Resultados #2</b>
+      <span item-right> {{ results.result2 }} Votos</span>
+    </ion-item>
+    <ion-item>
+      <b>Resultados #3</b>
+      <span item-right> {{results.result3}} Votos</span>
+    </ion-item>
+  </ion-list>
+
+  <canvas id="myChart" width="400" height="100"></canvas>
+</ion-content>

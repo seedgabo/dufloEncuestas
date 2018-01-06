@@ -1,3 +1,28 @@
 page-home {
+  ion-content {
+    background: url(http://indepresearch.com/wp-content/uploads/2016/02/bba-city-background-optimized.jpg);
+  }
+}
 
+.logo {
+  height: 100px;
+}
+
+.banner {
+  // width: 100%;
+  max-height: 180px;
+}
+
+.thanks-alert {
+  .alert-wrapper {
+    background: green;
+    color: white;
+    vertical-align: middle;
+    max-width: 90%;
+    height: 200px !important;
+    width: 400px !important;
+  }
+  .alert-sub-title {
+    margin-top: 30px;
+  }
 }

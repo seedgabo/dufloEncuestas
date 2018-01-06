@@ -3,21 +3,45 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Configuración</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <input type="file" name="file" id="filer" style="display:none;" #filer (change)="saveImage($event)">
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
+    <ion-item color="light">
+      Pregunta
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Pregunta</ion-label>
+      <ion-input (ionBlur)="save()" [(ngModel)]="survey.question"></ion-input>
+    </ion-item>
+
+    <ion-item color="light">Respuestas</ion-item>
+    <ion-item>
+      <ion-label floating> Respuesta 1</ion-label>
+      <ion-input (ionBlur)="save()" [(ngModel)]="survey.answer_1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating> Respuesta 2</ion-label>
+      <ion-input (ionBlur)="save()" [(ngModel)]="survey.answer_2"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating> Respuesta 3 </ion-label>
+      <ion-input (ionBlur)="save()" [(ngModel)]="survey.answer_3"></ion-input>
+    </ion-item>
+
+    <ion-item color="light">Otros</ion-item>
+    <button ion-item (click)="selectImage()">
+      <ion-icon name="image" item-left></ion-icon>
+      Seleccionar Imagen
     </button>
+    <div text-center>
+      <button ion-button color="danger" clear full *ngIf="survey.banner" icon-only (click)="survey.banner=null;survey.saveBanner()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+      <img [src]="survey.banner" (click)="selectImage()" *ngIf="survey.banner" class="banner">
+    </div>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>
