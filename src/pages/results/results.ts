@@ -36,9 +36,9 @@ export class ResultsPage {
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
-          'Respuesta 1: ' + this.survey.answer_1,
-          'Respuesta 2: ' + this.survey.answer_2,
-          'Respuesta 3: ' + this.survey.answer_3,
+          '' + this.survey.answer_1,
+          '' + this.survey.answer_2,
+          '' + this.survey.answer_3,
         ]
       }
     });
