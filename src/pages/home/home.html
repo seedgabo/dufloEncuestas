@@ -13,11 +13,24 @@
       class="logo">
     <img (dblclick)="gotoResults()" (press)="gotoResults()" *ngIf="survey.banner" [src]="survey.banner" class="banner">
   </div>
-  <h1 text-center>Encuesta</h1>
-  <h3 text-center>{{survey.question}}</h3>
-  <div text-center padding-vertical>
-    <button color="light" margin-vertical ion-button large full (click)="showThanks(1)"> {{survey.answer_1}} </button>
-    <button color="light" margin-vertical ion-button large full (click)="showThanks(2)"> {{survey.answer_2}} </button>
-    <button color="light" margin-vertical ion-button large full (click)="showThanks(3)"> {{survey.answer_3}} </button>
-  </div>
+  <h3 color="primary" ion-text text-center>{{survey.question}}</h3>
+  <ion-grid padding-vertical>
+    <ion-row>
+      <ion-col text-center>
+        <button color="light" class="button-answer" margin-vertical ion-button large (click)="showThanks(1)">
+          {{survey.answer_1}}
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button color="light" class="button-answer" margin-vertical ion-button large (click)="showThanks(2)">
+          {{survey.answer_2}}
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button color="light" class="button-answer" margin-vertical ion-button large (click)="showThanks(3)">
+          {{survey.answer_3}}
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

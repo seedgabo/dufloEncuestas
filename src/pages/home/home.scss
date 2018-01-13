@@ -3,6 +3,12 @@ page-home {
     background: url("/assets/imgs/background.jpg");
     background-size: cover;
   }
+  .button-answer {
+    height: auto;
+    min-height: 150px;
+    width: 150px;
+    border-radius: 50%;
+  }
 }
 
 .logo {
