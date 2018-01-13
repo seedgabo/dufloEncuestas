@@ -1,3 +1,4 @@
+import { SurveyProvider } from './../../providers/survey/survey';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // declare var Chart: any;
@@ -15,12 +16,20 @@ export class ResultsPage {
     result2: 0,
     result3: 0
   };
+  question = ""
   constructor(public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider) {
     if (this.navParams.get('results')) {
       this.results = this.navParams.get('results');
     } else {
       this.navCtrl.insertPages(0, [{ page: HomePage }]);
     }
+    if (this.navParams.get('question')) {
+      this.question = this.navParams.get('question')
+    }
+    else {
+      this.question = this.survey.question
+    }
+
   }
 
   ionViewDidLoad() {
@@ -43,6 +52,25 @@ export class ResultsPage {
         ]
       }
     });
+  }
+
+
+  export() {
+    var csv = 'Pregunta,' + this.question + '\n';
+    csv += this.survey.answer_1 + "," + this.results.result1 + "\n"
+    csv += this.survey.answer_2 + "," + this.results.result2 + "\n"
+    csv += this.survey.answer_3 + "," + this.results.result3 + "\n"
+    // data.forEach(function (row) {
+    //   csv += row.join(',');
+    //   csv += "\n";
+    // });
+
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'Resultados ' + (new Date()).toDateString() + '.csv';
+    hiddenElement.click();
   }
 
 }
