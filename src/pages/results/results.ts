@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // declare var Chart: any;
 import Chart from 'chart.js'
-import { SurveyProvider } from '../../providers/survey/survey';
 import { HomePage } from '../home/home';
 @IonicPage()
 @Component({
@@ -34,7 +33,7 @@ export class ResultsPage {
 
   ionViewDidLoad() {
     var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
+    new Chart(ctx, {
       type: 'pie',
       data: {
         datasets: [{

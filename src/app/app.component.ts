@@ -42,7 +42,7 @@ export class MyApp {
   }
 
   openSettings() {
-    var alert = this.alert.create({
+    this.alert.create({
       title: "Contraseña",
       inputs: [{
         name: 'password',

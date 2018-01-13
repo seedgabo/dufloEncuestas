@@ -25,7 +25,6 @@ export class HomePage {
 
 
   showThanks(pregunta) {
-    var counter;
     if (pregunta == 1) {
       this.counter1 = this.counter1 + 1
       console.info("conteo:" + this.counter1);
