@@ -64,5 +64,13 @@ export class SurveyProvider {
     return promise;
   }
 
+  clearVotes(date = null) {
+    if (date == null) {
+      date = new Date();
+    }
+    let key = 'answers_' + (date.toDateString().substring(0, 11))
+    this.storage.remove(key)
+  }
+
 
 }

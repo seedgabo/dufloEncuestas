@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { SurveyProvider } from '../../providers/survey/survey';
 @Component({
   selector: 'page-list',
@@ -7,7 +7,7 @@ import { SurveyProvider } from '../../providers/survey/survey';
 })
 export class ListPage {
   timeout;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider, public toast: ToastController) {
   }
 
   save() {
@@ -33,5 +33,13 @@ export class ListPage {
     } catch (error) {
       console.error(error)
     }
+  }
+
+  clear() {
+    this.survey.clearVotes()
+    this.toast.create({
+      message: "Limpiado",
+      duration: 2000
+    }).present()
   }
 }

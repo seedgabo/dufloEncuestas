@@ -32,6 +32,8 @@
       <ion-input (ionBlur)="save()" [(ngModel)]="survey.answer_3"></ion-input>
     </ion-item>
 
+    <button ion-button color="primary" block (click)="clear()">Reiniciar Contador De Encuesta</button>
+
     <ion-item color="light">Otros</ion-item>
     <button ion-item (click)="selectImage()">
       <ion-icon name="image" item-left></ion-icon>
