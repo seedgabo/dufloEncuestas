@@ -1,6 +1,6 @@
 import { SurveyProvider } from './../../providers/survey/survey';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 // declare var Chart: any;
 import Chart from 'chart.js'
 import { HomePage } from '../home/home';
@@ -16,7 +16,7 @@ export class ResultsPage {
     result3: 0
   };
   question = ""
-  constructor(public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider) {
+  constructor(public platform:Platform, public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider) {
     if (this.navParams.get('results')) {
       this.results = this.navParams.get('results');
     } else {
@@ -67,7 +67,10 @@ export class ResultsPage {
     console.log(csv);
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    hiddenElement.target = '_blank';
+    if(platform.is('android'))
+       hiddenElement.target = '_system';
+    else
+      hiddenElement.target = '_blank';
     hiddenElement.download = 'Resultados ' + (new Date()).toDateString() + '.csv';
     hiddenElement.click();
   }
