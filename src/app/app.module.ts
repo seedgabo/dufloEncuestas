@@ -35,7 +35,7 @@ import { FileTransfer } from "@ionic-native/file-transfer";
   ],
   providers: [
     StatusBar,
-    SplashScreen, File, FileTransfer, FileOpener
+    SplashScreen, File, FileTransfer, FileOpener,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     SurveyProvider
   ]
