@@ -1,9 +1,12 @@
+import { FileOpener } from '@ionic-native/file-opener';
+import { File } from '@ionic-native/file';
 import { SurveyProvider } from './../../providers/survey/survey';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 // declare var Chart: any;
 import Chart from 'chart.js'
 import { HomePage } from '../home/home';
+declare var cordova: any;
 @IonicPage()
 @Component({
   selector: 'page-results',
@@ -16,7 +19,7 @@ export class ResultsPage {
     result3: 0
   };
   question = ""
-  constructor(public platform:Platform, public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider) {
+  constructor(public platform:Platform, public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider, public file:File, public fileopener:FileOpener) {
     if (this.navParams.get('results')) {
       this.results = this.navParams.get('results');
     } else {
@@ -65,14 +68,36 @@ export class ResultsPage {
     // });
 
     console.log(csv);
+    if (this.platform.is('androdi')) {
+      this.exportCordova(csv)
+    }
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    if(this.platform.is('android'))
-       hiddenElement.target = '_system';
-    else
-      hiddenElement.target = '_blank';
+    hiddenElement.target = '_blank';
     hiddenElement.download = 'Resultados ' + (new Date()).toDateString() + '.csv';
     hiddenElement.click();
   }
-
+  exportCordova(csv) {
+    var openFile = () => {
+      this.file.writeFile(this.file.dataDirectory, "resultados.csv", csv)
+        .then(() => {
+          this.fileopener.open(this.file.dataDirectory + "resultados.csv", "csv")  
+          .catch(console.error)
+        }).catch(console.error)
+      
+    }
+    this.file.checkFile(this.file.dataDirectory, "resultados.csv")
+      .then(exists => {
+        if (exists) {
+          this.file.removeFile(this.file.dataDirectory, "resultados.csv")
+            .then(() => {
+            openFile()
+          })
+        } else {
+          openFile()
+        }
+      })
+    
+    
+  }
 }

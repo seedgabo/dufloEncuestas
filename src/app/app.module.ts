@@ -12,6 +12,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SurveyProvider } from '../providers/survey/survey';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { FileOpener } from "@ionic-native/file-opener";
+import { File } from "@ionic-native/file";
+import { FileTransfer } from "@ionic-native/file-transfer";
 @NgModule({
   declarations: [
     MyApp,
@@ -32,7 +35,7 @@ import { IonicStorageModule } from '@ionic/storage';
   ],
   providers: [
     StatusBar,
-    SplashScreen,
+    SplashScreen, File, FileTransfer, FileOpener
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     SurveyProvider
   ]
