@@ -67,7 +67,7 @@ export class ResultsPage {
     console.log(csv);
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    if(platform.is('android'))
+    if(this.platform.is('android'))
        hiddenElement.target = '_system';
     else
       hiddenElement.target = '_blank';
