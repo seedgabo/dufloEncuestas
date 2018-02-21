@@ -68,7 +68,7 @@ export class ResultsPage {
     // });
 
     console.log(csv);
-    if (this.platform.is('androdi')) {
+    if (this.platform.is('android')) {
       this.exportCordova(csv)
     }
     var hiddenElement = document.createElement('a');
@@ -78,24 +78,37 @@ export class ResultsPage {
     hiddenElement.click();
   }
   exportCordova(csv) {
+    console.log("callback cordova")
     var openFile = () => {
       this.file.writeFile(this.file.dataDirectory, "resultados.csv", csv)
         .then(() => {
+          console.log("file created")
+          // this.fileopener.open(this.file.dataDirectory + "resultados.csv", "application/vnd.ms-excel")  
           this.fileopener.open(this.file.dataDirectory + "resultados.csv", "csv")  
+          .then(() => {
+            console.log("file opened")
+            
+            }).catch(console.error)
           .catch(console.error)
         }).catch(console.error)
       
     }
     this.file.checkFile(this.file.dataDirectory, "resultados.csv")
       .then(exists => {
+        
         if (exists) {
+          console.log("the file exists, deleting")
           this.file.removeFile(this.file.dataDirectory, "resultados.csv")
-            .then(() => {
+          .then(() => {
             openFile()
           })
         } else {
+          console.log("the file doesn't exists")
           openFile()
         }
+      }).catch((err) => {
+        console.error(err)
+        openFile()
       })
     
     
