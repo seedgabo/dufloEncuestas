@@ -6,7 +6,6 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 // declare var Chart: any;
 import Chart from 'chart.js'
 import { HomePage } from '../home/home';
-declare var cordova: any;
 @IonicPage()
 @Component({
   selector: 'page-results',
@@ -19,7 +18,7 @@ export class ResultsPage {
     result3: 0
   };
   question = ""
-  constructor(public platform:Platform, public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider, public file:File, public fileopener:FileOpener) {
+  constructor(public platform: Platform, public navCtrl: NavController, public navParams: NavParams, public survey: SurveyProvider, public file: File, public fileopener: FileOpener) {
     if (this.navParams.get('results')) {
       this.results = this.navParams.get('results');
     } else {
@@ -84,24 +83,24 @@ export class ResultsPage {
         .then(() => {
           console.log("file created")
           // this.fileopener.open(this.file.dataDirectory + "resultados.csv", "application/vnd.ms-excel")  
-          this.fileopener.open(this.file.dataDirectory + "resultados.csv", "text/csv")  
-          .then(() => {
-            console.log("file opened")
-            
+          this.fileopener.open(this.file.dataDirectory + "resultados.csv", "text/csv")
+            .then(() => {
+              console.log("file opened")
+
             }).catch(console.error)
-          .catch(console.error)
+            .catch(console.error)
         }).catch(console.error)
-      
+
     }
     this.file.checkFile(this.file.dataDirectory, "resultados.csv")
       .then(exists => {
-        
+
         if (exists) {
           console.log("the file exists, deleting")
           this.file.removeFile(this.file.dataDirectory, "resultados.csv")
-          .then(() => {
-            openFile()
-          })
+            .then(() => {
+              openFile()
+            })
         } else {
           console.log("the file doesn't exists")
           openFile()
@@ -110,7 +109,7 @@ export class ResultsPage {
         console.error(err)
         openFile()
       })
-    
-    
+
+
   }
 }
