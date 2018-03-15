@@ -84,7 +84,7 @@ export class ResultsPage {
         .then(() => {
           console.log("file created")
           // this.fileopener.open(this.file.dataDirectory + "resultados.csv", "application/vnd.ms-excel")  
-          this.fileopener.open(this.file.dataDirectory + "resultados.csv", "csv")  
+          this.fileopener.open(this.file.dataDirectory + "resultados.csv", "text/csv")  
           .then(() => {
             console.log("file opened")
             
